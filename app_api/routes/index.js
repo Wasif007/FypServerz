@@ -25,16 +25,18 @@ var auth = jwt({
   userProperty: 'payload'
 });
 
-var ctrlValidation = require('../controller/validation');
-var ctrlGettingUsers=require('../controller/users');
+//Guard Validation
+var ctrlGettingGuardValidation=require('../controller/guardValidation');
+//Guard Adding
 var ctrlGettingGuardData=require('../controller/guardsdata');
+//Supervisor Validation
 var ctrlSupervisorValidation=require('../controller/supervisorValidation');
 
 
-//SignUP
-router.post('/signup', ctrlValidation.signup);
-router.post('/login', ctrlValidation.login);
-router.get('/users',auth,ctrlGettingUsers.users);
+//SignUP Login Guard
+router.post('/guardSignup', ctrlGettingGuardValidation.signup);
+router.post('/guardLogin', ctrlGettingGuardValidation.login);
+router.get('/guardList',ctrlGettingGuardValidation.guardAddList);
 
 //GuardsList
 router.get('/addingguard',ctrlGettingGuardData.guards);

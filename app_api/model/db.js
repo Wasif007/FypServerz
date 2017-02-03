@@ -46,7 +46,7 @@ process.on('SIGTERM', function() {
 });
 
 // BRING IN YOUR SCHEMAS & MODELS
-require('./users');
+require('./guardValidation');
 require('./addingguard');
 require('./supervisorValidation');
 
