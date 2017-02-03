@@ -80,11 +80,11 @@ module.exports.login=function(req,res)
 
 }
 
-module.exports.deleteSupervisorList=function(req,res)
+module.exports.deletesupervisorList=function(req,res)
 {
-  SupervisorValidation.remove({},function(){
-    sendJSONresponse(res,200,{
-      "message":"All fields deleted"
-    })
-  })
+  SupervisorValidation.remove({}, function(err,removed) {
+sendJSONresponse(res,200,{
+  "Message":" Deleted all data"
+})
+});
 }

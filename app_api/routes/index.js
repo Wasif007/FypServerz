@@ -41,13 +41,14 @@ router.get('/guardList',ctrlGettingGuardValidation.guardAddList);
 //GuardsList
 router.get('/addingguard',ctrlGettingGuardData.guards);
 router.post('/addingguard',upload,ctrlGettingGuardData.guardsAssigning);
+router.delete('/addingguardDelete',ctrlGettingGuardData.deleteguardList);
+
 
 //Signup Login Supervisor
 router.post('/supervisorLogin',ctrlSupervisorValidation.login);
 router.post('/supervisorSignup',upload,ctrlSupervisorValidation.signup);
 router.get('/supervisorList',ctrlSupervisorValidation.supervisorList);
 
-router.delete('/supervisorDelete',ctrlSupervisorValidation.deleteSupervisorList);
 
 
 

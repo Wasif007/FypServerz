@@ -22,6 +22,15 @@ sendJSONresponse(res,200,docs);
 });
 }
 
+module.exports.deleteguardList=function(req,res)
+{
+	Guard.remove({}, function(err,removed) {
+sendJSONresponse(res,200,{
+	"Message":" Deleted all data"
+})
+});
+}
+
 module.exports.guardsAssigning=function(req,res)
 {
 	var image_url_cloudinary;
