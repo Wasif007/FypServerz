@@ -79,3 +79,12 @@ module.exports.login=function(req,res)
   })(req, res);
 
 }
+
+module.exports.deleteSupervisorList=function(req,res)
+{
+  SupervisorValidation.remove({},function(){
+    sendJSONresponse(res,200,{
+      "message":"All fields deleted"
+    })
+  })
+}

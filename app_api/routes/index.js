@@ -47,4 +47,8 @@ router.post('/supervisorLogin',ctrlSupervisorValidation.login);
 router.post('/supervisorSignup',upload,ctrlSupervisorValidation.signup);
 router.get('/supervisorList',ctrlSupervisorValidation.supervisorList);
 
+router.delete('/supervisorDelete',ctrlSupervisorValidation.deleteSupervisorList);
+
+
+
 module.exports = router;

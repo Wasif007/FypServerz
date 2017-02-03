@@ -18,17 +18,11 @@ sendJSONresponse(res,404,{
 });
 return;
 }
-
+console.log(req.body.code+" "+req.body.email);
 SupervisorValidation.findOne({
   email:req.body.email,
   code:req.body.code
-}).exec(function(user){
-sendJSONresponse(res,200,{
-  "User is":user
-})
-},function(err){
-sendJSONresponse(res,404,err);
-});
+}).exec();
 
 }
 
