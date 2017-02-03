@@ -1,8 +1,7 @@
 var mongoose=require('mongoose');
 var guardValidation=mongoose.model('guardAdd');
 var passport=require('passport');
-var SupervisorValidation=mongoose.model('SupervisorValidation');
-
+var Guard=mongoose.model('Guard');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -44,7 +43,7 @@ sendJSONresponse(res,404,{
 return;
 }
 console.log(req.body.code+" "+req.body.email);
-SupervisorValidation.findOne({"email": req.body.email,
+Guard.findOne({"email": req.body.email,
 "code":req.body.code}, function (err, doc){
   if(err)
   {
