@@ -3,6 +3,31 @@ var guardValidation=mongoose.model('guardAdd');
 var passport=require('passport');
 var SupervisorValidation=mongoose.model('SupervisorValidation');
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+
+passport.use(new LocalStrategy({
+usernameField: 'email'
+},
+function(username, password, done) {
+guardValidation.findOne({ email: username }, function (err, user) {
+if (err) { return done(err); }
+if (!user) {
+return done(null, false, {
+message: 'Incorrect Email'
+});
+}
+if (!user.validPassword(password)) {
+return done(null, false, {
+message: 'Incorrect Passwords'
+});
+}
+return done(null, user);
+});
+}
+));
+
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
   res.json(content);
@@ -57,10 +82,32 @@ guardValidationAdd.save(function(err) {
 }
 
 module.exports.login=function(req,res)
-{ 
+{ if(!req.body.email || !req.body.password) {
+    sendJSONresponse(res, 400, {
+      "message": "Email and password required"
+    });
+    return;
+  }
+
+  passport.authenticate('local', function(err, user, info){
+    var token;
+
+    if (err) {
+      sendJSONresponse(res, 404, err);
+      return;
+    }
+
+    if(user){
+      token = user.generateJwt();
+      sendJSONresponse(res, 200, {
+        "token" : token
+      });
+    } else {
+      sendJSONresponse(res, 401, info);
+    }
+  })(req, res);
 
 }
-
 module.exports.guardAddList=function(req,res)
 {
  guardValidation.find({}, function(err, docs) {
