@@ -19,10 +19,40 @@ sendJSONresponse(res,404,{
 return;
 }
 console.log(req.body.code+" "+req.body.email);
-SupervisorValidation.findOne({
-  email:req.body.email,
-  code:req.body.code
-}).exec();
+SupervisorValidation.findOne({"email": req.body.email,
+"code":req.body.code}, function (err, doc){
+  if(err)
+  {
+    sendJSONresponse(res,404,{
+      "message":err
+    });
+    return;
+  }
+  else if(doc===null)
+  {
+    sendJSONresponse(res,404,{
+      "message":"Code or Email doesnot matches"
+    })
+    return;
+  }
+  var guardValidationAdd=new guardValidation();
+  guardValidationAdd.email=req.body.email;
+  guardValidationAdd.code=req.body.code; 
+
+ guardValidationAdd.setPassword(req.body.password);
+
+guardValidationAdd.save(function(err) {
+    var token;
+    if (err) {
+      sendJSONresponse(res, 404, err);
+    } else {
+      token = guardValidationAdd.generateJwt();
+      sendJSONresponse(res, 200, {
+        "token" : token
+      });
+    }
+  });
+})
 
 }
 
@@ -33,5 +63,23 @@ module.exports.login=function(req,res)
 
 module.exports.guardAddList=function(req,res)
 {
+ guardValidation.find({}, function(err, docs) {
+    if (!err){ 
+sendJSONresponse(res,200,docs);
+    } else {
+      throw err;
+    }
+});
+}
+module.exports.guardDeleteList=function(req,res)
+{
+  guardValidation.remove({}, function(err,removed) {
+    if(!err)
+    {
+     sendJSONresponse(res,200,{
+  "Message":" Deleted all data"
+})
+    }
 
+});
 }

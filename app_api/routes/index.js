@@ -37,6 +37,7 @@ var ctrlSupervisorValidation=require('../controller/supervisorValidation');
 router.post('/guardSignup', ctrlGettingGuardValidation.signup);
 router.post('/guardLogin', ctrlGettingGuardValidation.login);
 router.get('/guardList',ctrlGettingGuardValidation.guardAddList);
+router.delete('/guardListDelete',ctrlGettingGuardValidation.guardDeleteList);
 
 //GuardsList
 router.get('/addingguard',ctrlGettingGuardData.guards);
