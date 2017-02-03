@@ -26,7 +26,7 @@ var auth = jwt({
 });
 
 //Guard Validation
-var ctrlGettingGuardValidation=require('../controller/guardValidation');
+var ctrlGettingGuardValidation=require('../controller/guardvalidation');
 //Guard Adding
 var ctrlGettingGuardData=require('../controller/guardsdata');
 //Supervisor Validation
