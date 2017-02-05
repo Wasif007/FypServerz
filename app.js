@@ -10,9 +10,6 @@ var fs = require('fs');
 var passport = require('passport');
 
 require('./app_api/model/db');
-//require('./app_api/config/passportFile');
-//require('./app_api/config/passportSupervisorFile');
-
 
 var routes = require('./app_server/routes/index');
 var routesApi = require('./app_api/routes/index');
