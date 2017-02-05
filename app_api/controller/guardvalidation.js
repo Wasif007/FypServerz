@@ -87,27 +87,6 @@ module.exports.guardDeleteList=function(req,res)
 
 module.exports.login=function(req,res)
 { 
-  
-passports.use(new LocalStrategy({
-usernameField: 'email'
-},
-function(username, password, done) {
-guardValidation.findOne({ email: username }, function (err, user) {
-if (err) { return done(err); }
-if (!user) {
-return done(null, false, {
-message: 'Incorrect Email'
-});
-}
-if (!user.validPassword(password)) {
-return done(null, false, {
-message: 'Incorrect Passwords'
-});
-}
-return done(null, user);
-});
-}
-));
 
   if(!req.body.email || !req.body.password) {
     sendJSONresponse(res, 400, {
@@ -116,7 +95,7 @@ return done(null, user);
     return;
   }
 
-  passports.authenticate('local', function(err, user, info){
+  passports.authenticate('guard-local', function(err, user, info){
     var token;
 
     if (err) {

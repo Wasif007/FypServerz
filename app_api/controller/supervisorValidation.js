@@ -58,23 +58,6 @@ sendJSONresponse(res,200,docs);
 
 module.exports.login=function(req,res)
 { 
-passport.use(new LocalStrategy({
-usernameField: 'email'
-},
-  function(username, password, done) {
-    SupervisorValidation.findOne({ email: username }, 
-      function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
 
   if(!req.body.email || !req.body.password) {
     sendJSONresponse(res, 400, {
@@ -83,7 +66,7 @@ usernameField: 'email'
     return;
   }
 
-  passport.authenticate('local', function(err, user, info){
+  passport.authenticate('supervisor-local', function(err, user, info){
     var token;
 
     if (err) {
