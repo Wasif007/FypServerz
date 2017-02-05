@@ -15,13 +15,16 @@
     vm.credentials = {
       name : "",
       email : "",
-      password : ""
+      password : "",
+      file:"",
+      phone:"",
+      home_address:""
     };
 
 
     vm.onSubmit = function () {
       vm.formError = "";
-      if (!vm.credentials.name || !vm.credentials.email || !vm.credentials.password) {
+      if (!vm.credentials.name || !vm.credentials.address || !vm.credentials.file || !vm.credentials.phone ||!vm.credentials.email || !vm.credentials.password) {
         vm.formError = "All fields required, please try again";
         return false;
       } else {

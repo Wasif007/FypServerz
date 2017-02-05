@@ -28,7 +28,18 @@
         <div class="form-group">
           <input type="password" class="form-control" id="password" placeholder="Password" ng-model="vm.credentials.password">
         </div>
-        <button type="submit" class="btn-alt">Register!</button>
+        <div class="form-group">
+          <input type="text" class="form-group" id="phone" placeholder="Enter phone 03XX-XXXXXXX" ng-model="vm.credentials.phone">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-group" id="phone" placeholder="Enter Home Address" ng-model="vm.credentials.home_address">
+        </div>
+        <div>
+               <input name="Select File" class="form-group" type="file" id="file"
+               ng-model="vm.credentials.file"/>
+            </div>
+        <button type="submit" class="btn btn-alt">Sign Up!
+        </button>
       </form>
   
   </div>
