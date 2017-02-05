@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var guardValidation=mongoose.model('guardAdd');
 var SupervisorValidation=mongoose.model('SupervisorValidation');
 
-passports.use('guard-local',new LocalStrategy({
+passport.use('guard-local',new LocalStrategy({
 usernameField: 'email'
 },
 function(username, password, done) {
