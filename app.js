@@ -10,7 +10,7 @@ var fs = require('fs');
 var passport = require('passport');
 
 require('./app_api/model/db');
-equire('./app_api/config/passport');
+require('./app_api/config/passport');
 
 var routes = require('./app_server/routes/index');
 var routesApi = require('./app_api/routes/index');
