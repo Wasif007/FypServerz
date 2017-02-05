@@ -50,6 +50,8 @@ module.exports.guardsAssigning=function(req,res)
 	guard.code=req.body.code;
 	guard.imageUrl=image_url_cloudinary;
 	guard.home_address=req.body.home_address;
+    console.log(moment(req.body.createdOn).format("DD-MM-YYYY"));
+    console.log(typeof moment(req.body.createdOn).format("DD-MM-YYYY"));
 
 	guard.save(function(err) {
     if (err) {
