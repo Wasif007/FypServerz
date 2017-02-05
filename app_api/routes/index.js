@@ -45,7 +45,8 @@ router.post('/addingguard',upload,ctrlGettingGuardData.guardsAssigning);
 router.delete('/addingguardDelete',ctrlGettingGuardData.deleteguardList);
 
 
-//Signup Login Supervisor
+//Signup Login Supervisor 
+
 router.post('/supervisorLogin',ctrlSupervisorValidation.login);
 router.post('/supervisorSignup',upload,ctrlSupervisorValidation.signup);
 router.get('/supervisorList',ctrlSupervisorValidation.supervisorList);
