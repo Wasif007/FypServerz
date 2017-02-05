@@ -108,6 +108,41 @@ module.exports.guardDeleteList=function(req,res)
 
 module.exports.login=function(req,res)
 { 
+  if(!req.body.email || !req.body.password) {
+    sendJSONresponse(res, 400, {
+      "message": "Email and password are requireds"
+    });
+    return;
+  }
+
+  passports.authenticate('local', function(err, user, info){
+    var token;
+
+    if (err) {
+      sendJSONresponse(res, 404, err);
+      return;
+    }
+
+    if(user){
+      token = user.generateJwt();
+      sendJSONresponse(res, 200, {
+        "token" : token
+      });
+    } else {
+      sendJSONresponse(res, 401, info);
+    }
+  })(req, res);
+
+}
+module.exports.guardAddList=function(req,res)
+{
+ guardValidation.find({}, function(err, docs) {
+    if (!err){ 
+sendJSONresponse(res,200,docs);
+    } else {
+      throw err;
+    }
+});
 }
 
 
