@@ -1,12 +1,11 @@
 var mongoose=require('mongoose');
 var guardValidation=mongoose.model('guardAdd');
-var passport=require('passport');
+var passports=require('passport');
 var Guard=mongoose.model('Guard');
-var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 
-passport.use(new LocalStrategy({
+passports.use(new LocalStrategy({
 usernameField: 'email'
 },
 function(username, password, done) {
@@ -83,12 +82,12 @@ guardValidationAdd.save(function(err) {
 module.exports.login=function(req,res)
 { if(!req.body.email || !req.body.password) {
     sendJSONresponse(res, 400, {
-      "message": "Email and password required"
+      "message": "Email and password are requireds"
     });
     return;
   }
 
-  passport.authenticate('local', function(err, user, info){
+  passports.authenticate('local', function(err, user, info){
     var token;
 
     if (err) {

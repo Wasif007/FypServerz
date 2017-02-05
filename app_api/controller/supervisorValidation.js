@@ -2,6 +2,7 @@ var mongoose=require('mongoose');
 var SupervisorValidation=mongoose.model('SupervisorValidation');
 var passport=require('passport');
 
+
 var LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy({
 usernameField: 'email'
@@ -20,6 +21,7 @@ usernameField: 'email'
     });
   }
 ));
+
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
   res.json(content);
