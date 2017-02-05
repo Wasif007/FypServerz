@@ -26,8 +26,7 @@ var guardSchema=new mongoose.Schema({
 	},
 	createdOn:
 	 {
-	  type: Date, 
-	  default: Date.now
+	  type: String
 	 }
 	 ,
 	 home_address:{
