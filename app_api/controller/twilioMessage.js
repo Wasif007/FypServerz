@@ -1,9 +1,9 @@
 var client = require('twilio')('AC678ea2ec1d3504e754eaeffce34b6bea', '22c8728b18ee523c272c4efc44919e04');
 
 module.exports.sendingMessage = function(req, res) {
-  var messageToSend=req.body.message;
+ 
   client.messages.create({
-    message:"Hello Again",
+    body: "This is the ship that made the Kessel Run in fourteen parsecs?", 
     to: req.body.to,
     from: '+15124025641'
     // mediaUrl: 'http://www.yourserver.com/someimage.png'
