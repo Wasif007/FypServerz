@@ -13,27 +13,6 @@ var sendJSONresponse = function(res, status, content) {
 
 
 
-passports.use(new LocalStrategy({
-usernameField: 'email'
-},
-function(username, password, done) {
-guardValidation.findOne({ email: username }, function (err, user) {
-if (err) { return done(err); }
-if (!user) {
-return done(null, false, {
-message: 'Incorrect Email'
-});
-}
-if (!user.validPassword(password)) {
-return done(null, false, {
-message: 'Incorrect Passwords'
-});
-}
-return done(null, user);
-});
-}
-));
-
 module.exports.signup=function(req,res)
 {
 if(!req.body.code || !req.body.password || !req.body.email)
@@ -108,6 +87,28 @@ module.exports.guardDeleteList=function(req,res)
 
 module.exports.login=function(req,res)
 { 
+  
+passports.use(new LocalStrategy({
+usernameField: 'email'
+},
+function(username, password, done) {
+guardValidation.findOne({ email: username }, function (err, user) {
+if (err) { return done(err); }
+if (!user) {
+return done(null, false, {
+message: 'Incorrect Email'
+});
+}
+if (!user.validPassword(password)) {
+return done(null, false, {
+message: 'Incorrect Passwords'
+});
+}
+return done(null, user);
+});
+}
+));
+
   if(!req.body.email || !req.body.password) {
     sendJSONresponse(res, 400, {
       "message": "Email and password are requireds"
