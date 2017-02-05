@@ -31,7 +31,8 @@ var ctrlGettingGuardValidation=require('../controller/guardvalidation');
 var ctrlGettingGuardData=require('../controller/guardsdata');
 //Supervisor Validation
 var ctrlSupervisorValidation=require('../controller/supervisorValidation');
-
+//Sending Message Route
+var ctrlTwilioRoute=require('../controller/twilioMessage');
 
 //SignUP Login Guard
 router.post('/guardSignup', ctrlGettingGuardValidation.signup);
@@ -52,7 +53,8 @@ router.post('/supervisorSignup',upload,ctrlSupervisorValidation.signup);
 router.get('/supervisorList',ctrlSupervisorValidation.supervisorList);
 router.delete('/supervisorDelete',ctrlSupervisorValidation.deletesupervisorList);
 
-
+//Message Route
+router.post('/twilioMessage',ctrlTwilioRoute.sendingMessage);
 
 
 module.exports = router;

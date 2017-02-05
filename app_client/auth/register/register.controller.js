@@ -24,8 +24,14 @@
 
     vm.onSubmit = function () {
       vm.formError = "";
-      if (!vm.credentials.name || !vm.credentials.address || !vm.credentials.file || !vm.credentials.phone ||!vm.credentials.email || !vm.credentials.password) {
-        vm.formError = "All fields required, please try again";
+      if (!vm.credentials.name || !vm.credentials.home_address
+          || !vm.credentials.file || !vm.credentials.phone 
+          ||!vm.credentials.email || !vm.credentials.password
+          )
+           {
+        vm.formError = "All fields required, please try again"+vm.credentials.file+" "+vm.credentials.name+
+              " "+vm.credentials.email+" "+vm.credentials.phone+" "+
+              vm.credentials.password+" "+vm.credentials.home_address+" "+vm.credentials.file+" "+photo.file;
         return false;
       } else {
         vm.doRegister();
